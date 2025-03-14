@@ -47,7 +47,7 @@ modules:
         sha256: fbdd6af27ba157d308884d2f3831c12c3d1d1464b60d8b08ef76cae8ff30cc4f
       - type: file
         url: https://github.com/FTBTeam/FTB-App/raw/main/flathub/dev.ftb.ftb-app.metainfo.xml
-        sha256: b8da4d80c8dffb8ecb5bbc91d2677d7bf5e298d35e922c61582f6be9cf4bc281
+        sha256: 95b978823f14983859a53c471244a80421e565ec79b242755dd36a29f60384f9
       - type: script
         commands:
           - zypak-wrapper /app/bin/ftb-app/ftb-app "$@"

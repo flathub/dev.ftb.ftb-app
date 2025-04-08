@@ -34,8 +34,8 @@ modules:
     sources:
       - type: file
         dest-filename: FTB-App-linux-setup.AppImage
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.27.4-x86_64.AppImage
-        sha512: 81f2ab9127127400fcdf735e53fbd01e30f96eaef2e5b98700f5a16b9b762e2453d8c79068c256893350fa1ff268ee3575e4125302849efc9dfd577d28bc4ca7
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.27.5-x86_64.AppImage
+        sha512: 9144ff84eba38a1b64ffd9e7a80d04f0c104774f82834efcf1d7c077f95b414b6bb02b9ca30a743140dc0139d70a19e1187cb96695097b0fd5a92062410093af
         x-checker-data:
           type: electron-updater
           url: https://piston.feed-the-beast.com/app/latest-linux.yml

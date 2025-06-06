@@ -36,9 +36,21 @@ modules:
         dest-filename: FTB-App-linux-setup.tar.gz
         url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-alpha.173-x64.tar.gz
         sha512: dbd00d22371f55bcbd1921348ab4d392a270fa37a5a8b61eb7f3f89f4bbd894bb07443222c03833890e78f6489cf6abc962a6774f73e2732c6e8186adb5697df
+        only-arches:
+          - x86_64
         x-checker-data:
           type: electron-updater
           url: https://piston.feed-the-beast.com/app/latest-linux.yml
+
+      - type: file
+        dest-filename: FTB-App-linux-setup.AppImage
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-alpha.173-arm64.tar.gz
+        sha512: 432dcc2977357120dc3858ca0ae677f036fe18198405bf9dda61f9eb622d2bb8601e7f951833e9dd6abc2a24ebaa6cf4d51f524ead493e8877c18ba3fe9e0944
+        only-arches:
+          - aarch64
+        x-checker-data:
+          type: electron-updater
+          url: https://piston.feed-the-beast.com/app/alpha-linux-arm64.yml
       
       - type: file
         url: https://github.com/FTBTeam/FTB-App/raw/main/flathub/dev.ftb.ftb-app.desktop

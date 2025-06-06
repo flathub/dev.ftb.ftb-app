@@ -1,54 +1,83 @@
 app-id: dev.ftb.ftb-app
 base: org.electronjs.Electron2.BaseApp
 base-version: '24.08'
-runtime: org.freedesktop.Sdk
+runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
 command: ftb.sh
+
 finish-args:
+  # - --socket=wayland
+  # - --socket=fallback-x11
   - --socket=x11
   - --socket=pulseaudio
   - --device=all
   - --share=ipc
   - --share=network
-  - --env=CHROME_WRAPPER=zypak-wrapper
-  - --filesystem=xdg-download # Import/export modpacks and logs
-  - --filesystem=xdg-desktop # Import/export modpacks and logs
   - --filesystem=~/.ftba:create # Home folder for the FTB App
+  - --filesystem=~/.steam # SteamOs Compat
+
+  - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
+  # - --env=ELECTRON_OZONE_PLATFORM_HINT=auto # Use wayland if available
+
 modules:
-  - name: xrandr
-    sources:
-      - sha256: 980befa14b48de2fa74dc07bbb22f746acfd12e1f9dbd539eab9a3c9b434d667
-        type: archive
-        url: https://www.x.org/archive/individual/app/xrandr-1.5.3.tar.gz
   - name: ftb-app
     buildsystem: simple
     build-commands:
-      - chmod +x FTB-App-linux-setup.AppImage
-      - ./FTB-App-linux-setup.AppImage --appimage-extract
-      - cp -r squashfs-root /app/bin/ftb-app
+      - mkdir app-src
+      - tar -xzvf FTB-App-linux-setup.tar.gz -C app-src --strip-components=1
+      - cp -r app-src /app/bin/ftb-app
       - install -D icon.png /app/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
       - install -D ${FLATPAK_ID}.desktop -t /app/share/applications
       - install -D ${FLATPAK_ID}.metainfo.xml -t /app/share/metainfo
       - install -D ftb.sh /app/bin
     sources:
       - type: file
-        dest-filename: FTB-App-linux-setup.AppImage
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.27.5-x86_64.AppImage
-        sha512: 9144ff84eba38a1b64ffd9e7a80d04f0c104774f82834efcf1d7c077f95b414b6bb02b9ca30a743140dc0139d70a19e1187cb96695097b0fd5a92062410093af
+        dest-filename: FTB-App-linux-setup.tar.gz
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-alpha.173-x64.tar.gz
+        sha512: dbd00d22371f55bcbd1921348ab4d392a270fa37a5a8b61eb7f3f89f4bbd894bb07443222c03833890e78f6489cf6abc962a6774f73e2732c6e8186adb5697df
         x-checker-data:
           type: electron-updater
           url: https://piston.feed-the-beast.com/app/latest-linux.yml
+      
       - type: file
         url: https://github.com/FTBTeam/FTB-App/raw/main/flathub/dev.ftb.ftb-app.desktop
         sha256: da102a024457d0cf9986f032b3102dbc3f286612fed5dece4bbe83d02af76ef8
+      
       - type: file
         url: https://github.com/FTBTeam/FTB-App/raw/main/resources/icon.png
         sha256: fbdd6af27ba157d308884d2f3831c12c3d1d1464b60d8b08ef76cae8ff30cc4f
+      
       - type: file
         url: https://github.com/FTBTeam/FTB-App/raw/main/flathub/dev.ftb.ftb-app.metainfo.xml
         sha256: 95b978823f14983859a53c471244a80421e565ec79b242755dd36a29f60384f9
+      
       - type: script
         commands:
-          - zypak-wrapper /app/bin/ftb-app/ftb-app "$@"
+          - export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
+          # - WAYLAND_SOCKET=${WAYLAND_DISPLAY:-"wayland-0"}
+          # - |
+          #   declare -a FLAGS=()
+          #   if [[ $XDG_SESSION_TYPE == "wayland" && -z "$DISPLAY" ]]; then
+          #     if [[ -c /dev/nvidia0 ]]; then
+          #       echo "Using NVIDIA on wayland, disabling gpu sandbox"
+          #       FLAGS+=(--disable-gpu-sandbox)
+          #     fi
+
+          #     WAYLAND_SOCKET=${WAYLAND_DISPLAY:-"wayland-0"}
+          #     if [[ "${WAYLAND_SOCKET:0:1}" != "/" ]]; then
+          #       WAYLAND_SOCKET="$XDG_RUNTIME_DIR/$WAYLAND_SOCKET"
+          #     fi
+
+          #     echo "Running on native Wayland"
+          #     FLAGS+=(--ozone-platform-hint=auto)
+          #     FLAGS+=(--enable-wayland-ime)
+          #     FLAGS+=(--enable-features=WaylandWindowDecorations)
+          #   else
+          #     echo "Running on x11"
+          #   fi
+
+          # - echo "Passing the following flags to electron:" "${FLAGS[@]}" "$@"
+          # - exec zypak-wrapper /app/bin/ftb-app/ftb-app "${FLAGS[@]}" "$@"
+          - exec zypak-wrapper /app/bin/ftb-app/ftb-app "$@"
         dest-filename: ftb.sh

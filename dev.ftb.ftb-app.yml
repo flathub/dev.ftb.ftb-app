@@ -43,7 +43,7 @@ modules:
           url: https://piston.feed-the-beast.com/app/latest-linux.yml
 
       - type: file
-        dest-filename: FTB-App-linux-setup.AppImage
+        dest-filename: FTB-App-linux-setup.tar.gz
         url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-beta.178-arm64.tar.gz
         sha512: bb7d2b6a0132f7685205689af1ee98c97a964a4bdcf266fc7d0692b389a9802ec240b0fa75dcab4306eaa59d577e675504a89892131764f6072cf52ea17e075a
         only-arches:

@@ -34,8 +34,8 @@ modules:
     sources:
       - type: file
         dest-filename: FTB-App-linux-setup.tar.gz
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-alpha.180-x64.tar.gz
-        sha512: bb38c16b1d65a03b1da25fe1e3876f6f03056b6afb3b97a79ee4f9572473a84f6353b8778d62befa29c316852887cc6cad5420fbe950eeb1dec240072f83c4db
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-beta.178-x64.tar.gz
+        sha512: 0934b0e5cbfa371828ea3d3d0f454e2fecf93c5f682623d6eaf78382c506e9201378ef5535885c075ad78b9056f2647776d8bb27954f6f78e6678f6ef7eb6624
         only-arches:
           - x86_64
         x-checker-data:
@@ -44,8 +44,8 @@ modules:
 
       - type: file
         dest-filename: FTB-App-linux-setup.AppImage
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-alpha.180-arm64.tar.gz
-        sha512: baee3bd8e140a8211d47f910959324a5966191274790c0e2a27abb5de837723813d70b81fd19fca3973c3c432907ddee40c2e00836660e33d7451a60c5f4b533
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-beta.178-arm64.tar.gz
+        sha512: bb7d2b6a0132f7685205689af1ee98c97a964a4bdcf266fc7d0692b389a9802ec240b0fa75dcab4306eaa59d577e675504a89892131764f6072cf52ea17e075a
         only-arches:
           - aarch64
         x-checker-data:
@@ -91,5 +91,6 @@ modules:
 
           # - echo "Passing the following flags to electron:" "${FLAGS[@]}" "$@"
           # - exec zypak-wrapper /app/bin/ftb-app/ftb-app "${FLAGS[@]}" "$@" --ignore-pid-checks
+          - rm -f ~/.ftba/app.pid # Temp fix for --ignore-pid-checks not working
           - exec zypak-wrapper /app/bin/ftb-app/ftb-app "$@" --ignore-pid-checks
         dest-filename: ftb.sh

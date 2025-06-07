@@ -40,7 +40,7 @@ modules:
           - x86_64
         x-checker-data:
           type: electron-updater
-          url: https://piston.feed-the-beast.com/app/latest-linux.yml
+          url: https://piston.feed-the-beast.com/app/beta-linux.yml
 
       - type: file
         dest-filename: FTB-App-linux-setup.tar.gz
@@ -50,7 +50,7 @@ modules:
           - aarch64
         x-checker-data:
           type: electron-updater
-          url: https://piston.feed-the-beast.com/app/alpha-linux-arm64.yml
+          url: https://piston.feed-the-beast.com/app/beta-linux-arm64.yml
       
       - type: file
         url: https://github.com/FTBTeam/FTB-App/raw/main/flathub/dev.ftb.ftb-app.desktop

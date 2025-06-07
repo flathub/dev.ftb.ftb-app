@@ -91,6 +91,5 @@ modules:
 
           # - echo "Passing the following flags to electron:" "${FLAGS[@]}" "$@"
           # - exec zypak-wrapper /app/bin/ftb-app/ftb-app "${FLAGS[@]}" "$@"
-          - rm ~/.ftba/app.pid # Hack to remove stale PID file
-          - exec zypak-wrapper /app/bin/ftb-app/ftb-app "$@"
+          - exec zypak-wrapper /app/bin/ftb-app/ftb-app "$@" --ignore-pid-checks
         dest-filename: ftb.sh

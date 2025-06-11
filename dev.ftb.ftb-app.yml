@@ -33,8 +33,8 @@ modules:
     sources:
       - type: file
         dest-filename: FTB-App-linux-setup.tar.gz
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-beta.178-x64.tar.gz
-        sha512: 0934b0e5cbfa371828ea3d3d0f454e2fecf93c5f682623d6eaf78382c506e9201378ef5535885c075ad78b9056f2647776d8bb27954f6f78e6678f6ef7eb6624
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-beta.182-x64.tar.gz
+        sha512: 5833174f0a1fb9594961a74e920934c22524e58c5e8c465dc24c1648bf57c58b6dfeff4a8124f7f123c2c63192d0edbbd47181ad4d23d482f24c30d0d6fe18f5
         only-arches:
           - x86_64
         x-checker-data:
@@ -43,8 +43,8 @@ modules:
 
       - type: file
         dest-filename: FTB-App-linux-setup.tar.gz
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-beta.178-arm64.tar.gz
-        sha512: bb7d2b6a0132f7685205689af1ee98c97a964a4bdcf266fc7d0692b389a9802ec240b0fa75dcab4306eaa59d577e675504a89892131764f6072cf52ea17e075a
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-beta.182-arm64.tar.gz
+        sha512: cb644a85858d3081d37f3de5e149f75f13b5087b793c3b47cba7283ac5b5a5f4e36b7bc94bd9bb463c995fc4a07ea0b6fa36623e52689f6f6fa396a5ff410798
         only-arches:
           - aarch64
         x-checker-data:

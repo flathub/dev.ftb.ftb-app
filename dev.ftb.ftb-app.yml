@@ -33,8 +33,8 @@ modules:
     sources:
       - type: file
         dest-filename: FTB-App-linux-setup.tar.gz
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-beta.182-x64.tar.gz
-        sha512: 5833174f0a1fb9594961a74e920934c22524e58c5e8c465dc24c1648bf57c58b6dfeff4a8124f7f123c2c63192d0edbbd47181ad4d23d482f24c30d0d6fe18f5
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-beta.188-x86_64.AppImage
+        sha512: 9895e62871670a2908d07674773047cdbe46ceaf3b361f85b80313f846fd14aa90c001a4b9b141e71eaa7dd504b51adc98634a9886ff2ad2cf902f46b263001c
         only-arches:
           - x86_64
         x-checker-data:
@@ -43,26 +43,26 @@ modules:
 
       - type: file
         dest-filename: FTB-App-linux-setup.tar.gz
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-beta.182-arm64.tar.gz
-        sha512: cb644a85858d3081d37f3de5e149f75f13b5087b793c3b47cba7283ac5b5a5f4e36b7bc94bd9bb463c995fc4a07ea0b6fa36623e52689f6f6fa396a5ff410798
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.0-beta.188-arm64.AppImage
+        sha512: 81d2b62f03e180e75c1a76db2885a3b96efa8f5a85eb49f686c55217fe14536902f2aeb887afccc36ab21d7613fff99d441f253ddcf84b0eee6f0b12f8cbe68a
         only-arches:
           - aarch64
         x-checker-data:
           type: electron-updater
           url: https://piston.feed-the-beast.com/app/beta-linux-arm64.yml
-      
+
       - type: file
         url: https://github.com/FTBTeam/FTB-App/raw/main/flathub/dev.ftb.ftb-app.desktop
         sha256: da102a024457d0cf9986f032b3102dbc3f286612fed5dece4bbe83d02af76ef8
-      
+
       - type: file
         url: https://github.com/FTBTeam/FTB-App/raw/main/resources/icon.png
         sha256: fbdd6af27ba157d308884d2f3831c12c3d1d1464b60d8b08ef76cae8ff30cc4f
-      
+
       - type: file
         url: https://github.com/FTBTeam/FTB-App/raw/main/flathub/dev.ftb.ftb-app.metainfo.xml
         sha256: 95b978823f14983859a53c471244a80421e565ec79b242755dd36a29f60384f9
-      
+
       - type: script
         commands:
           - export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"

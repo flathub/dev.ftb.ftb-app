@@ -60,11 +60,11 @@ modules:
         sha256: fbdd6af27ba157d308884d2f3831c12c3d1d1464b60d8b08ef76cae8ff30cc4f
       
       - type: file
-        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/main/flathub/dev.ftb.ftb-app.metainfo.xml
+        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/dev/flathub/dev.ftb.ftb-app.metainfo.xml
         sha512: ced7446335fa30ae42ee08ae2ca5bb6be049a83bc2ea475a9ee6bdf1344af3239187a0d0b1007be59d36771eac45a4ff26f33949d4b28510a680324d8097c6e2
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/FTBTeam/FTB-App/contents/flathub/dev.ftb.ftb-app.metainfo.xml
+          url: https://api.github.com/repos/FTBTeam/FTB-App/contents/flathub/dev.ftb.ftb-app.metainfo.xml?ref=dev
           version-query: .sha
           url-query: .download_url
       

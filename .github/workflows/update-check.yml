@@ -7,6 +7,8 @@ on:
 jobs:
   flatpak-external-data-checker:
     runs-on: ubuntu-latest
+    # only run this job for the flathub repository or if the workflow is manually dispatched
+    if: github.repository_owner == 'flathub' || github.event_name == 'workflow_dispatch'
 
     strategy:
       matrix:

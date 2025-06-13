@@ -62,13 +62,14 @@ modules:
         sha256: fbdd6af27ba157d308884d2f3831c12c3d1d1464b60d8b08ef76cae8ff30cc4f
       
       - type: file
-        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/main/flathub/dev.ftb.ftb-app.metainfo.xml?version=10cbb6b0db26b293ee37874415015d06ae3eaa12
-        sha1: be73e9c1002fe22390757b7606301ab852998dd6
+        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/refs/tags/v1.27.5/flathub/dev.ftb.ftb-app.metainfo.xml
+        sha256: 95b978823f14983859a53c471244a80421e565ec79b242755dd36a29f60384f9
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/FTBTeam/FTB-App/contents/flathub/dev.ftb.ftb-app.metainfo.xml
-          version-query: .sha
-          url-query: "\"https://raw.githubusercontent.com/FTBTeam/FTB-App/main/flathub/dev.ftb.ftb-app.metainfo.xml?version=\\($version)\""
+          url: https://api.github.com/repos/FTBTeam/FTB-App/tags
+          version-query: map(.name | select(test("^v([0-9]+.[0-9]+.[0-9}+])$"))) | first
+            | sub("^v"; "")
+          url-query: '"https://raw.githubusercontent.com/FTBTeam/FTB-App/refs/tags/v" + $version + "/flathub/dev.ftb.ftb-app.metainfo.xml"'
 
       - type: script
         commands:

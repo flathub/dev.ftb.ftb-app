@@ -17,11 +17,38 @@ finish-args:
   - --filesystem=xdg-download # Import/export modpacks and logs
   - --filesystem=xdg-desktop # Import/export modpacks and logs
   - --filesystem=~/.ftba:create # Home folder for the FTB App
+  - --filesystem=xdg-run/app/com.discordapp.Discord:create # Needed for mods that integrate with Discord RPC
 
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
   # - --env=ELECTRON_OZONE_PLATFORM_HINT=auto # Use wayland if available
 
 modules:
+  # Credit to the prism flatpak manifest for the gamemode module
+  - name: gamemode
+    buildsystem: meson
+    config-opts:
+      - -Dwith-sd-bus-provider=no-daemon
+      - -Dwith-examples=false
+    post-install:
+      # gamemoderun is installed for users who want to use wrapper commands
+      # post-install is running inside the build dir, we need it from the source though
+      - install -Dm755 ../data/gamemoderun -t /app/bin
+    sources:
+      - type: archive
+        dest-filename: gamemode.tar.gz
+        url: https://api.github.com/repos/FeralInteractive/gamemode/tarball/1.8.2
+        sha256: 2886d4ce543c78bd2a364316d5e7fd59ef06b71de63f896b37c6d3dc97658f60
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/FeralInteractive/gamemode/releases/latest
+          version-query: .tag_name
+          url-query: .tarball_url
+          timestamp-query: .published_at
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /lib/libgamemodeauto.a
+
   - name: ftb-app
     buildsystem: simple
     build-commands:
@@ -67,37 +94,39 @@ modules:
         x-checker-data:
           type: json
           url: https://api.github.com/repos/FTBTeam/FTB-App/tags
-          version-query: map(.name | select(test("^v([0-9]+.[0-9]+.[0-9}+])$"))) | first
-            | sub("^v"; "")
+          version-query: map(.name | select(test("^v([0-9]+.[0-9]+.[0-9}+])$"))) | first | sub("^v"; "")
           url-query: '"https://raw.githubusercontent.com/FTBTeam/FTB-App/refs/tags/v" + $version + "/flathub/dev.ftb.ftb-app.metainfo.xml"'
 
       - type: script
         commands:
-          - export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
-          # - WAYLAND_SOCKET=${WAYLAND_DISPLAY:-"wayland-0"}
-          # - |
-          #   declare -a FLAGS=()
-          #   if [[ $XDG_SESSION_TYPE == "wayland" && -z "$DISPLAY" ]]; then
-          #     if [[ -c /dev/nvidia0 ]]; then
-          #       echo "Using NVIDIA on wayland, disabling gpu sandbox"
-          #       FLAGS+=(--disable-gpu-sandbox)
-          #     fi
+          - |
+            export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
+            for i in {0..9}; do
+              test -S $XDG_RUNTIME_DIR/discord-ipc-$i || ln -sf {app/com.discordapp.Discord,$XDG_RUNTIME_DIR}/discord-ipc-$i;
+            done
+            # WAYLAND_SOCKET=${WAYLAND_DISPLAY:-"wayland-0"}
+            # declare -a FLAGS=()
+            # if [[ $XDG_SESSION_TYPE == "wayland" && -z "$DISPLAY" ]]; then
+              # if [[ -c /dev/nvidia0 ]]; then
+                # echo "Using NVIDIA on wayland, disabling gpu sandbox"
+                # FLAGS+=(--disable-gpu-sandbox)
+              # fi
 
-          #     WAYLAND_SOCKET=${WAYLAND_DISPLAY:-"wayland-0"}
-          #     if [[ "${WAYLAND_SOCKET:0:1}" != "/" ]]; then
-          #       WAYLAND_SOCKET="$XDG_RUNTIME_DIR/$WAYLAND_SOCKET"
-          #     fi
+              # WAYLAND_SOCKET=${WAYLAND_DISPLAY:-"wayland-0"}
+              # if [[ "${WAYLAND_SOCKET:0:1}" != "/" ]]; then
+                # WAYLAND_SOCKET="$XDG_RUNTIME_DIR/$WAYLAND_SOCKET"
+              # fi
 
-          #     echo "Running on native Wayland"
-          #     FLAGS+=(--ozone-platform-hint=auto)
-          #     FLAGS+=(--enable-wayland-ime)
-          #     FLAGS+=(--enable-features=WaylandWindowDecorations)
-          #   else
-          #     echo "Running on x11"
-          #   fi
-
-          # - echo "Passing the following flags to electron:" "${FLAGS[@]}" "$@"
-          # - exec zypak-wrapper /app/bin/ftb-app/ftb-app "${FLAGS[@]}" "$@" --ignore-pid-checks
-          - rm -f ~/.ftba/app.pid # Temp fix for --ignore-pid-checks not working
-          - exec zypak-wrapper /app/bin/ftb-app/ftb-app "$@" --ignore-pid-checks
+              # echo "Running on native Wayland"
+              # FLAGS+=(--ozone-platform-hint=auto)
+              # FLAGS+=(--enable-wayland-ime)
+              # FLAGS+=(--enable-features=WaylandWindowDecorations)
+            # else
+              # echo "Running on x11"
+            # fi
+            
+            # echo "Passing the following flags to electron:" "${FLAGS[@]}" "$@"
+            # exec zypak-wrapper /app/bin/ftb-app/ftb-app "${FLAGS[@]}" "$@" --ignore-pid-checks
+            rm -f ~/.ftba/app.pid # Temp fix for --ignore-pid-checks not working
+            exec zypak-wrapper /app/bin/ftb-app/ftb-app "$@" --ignore-pid-checks
         dest-filename: ftb.sh

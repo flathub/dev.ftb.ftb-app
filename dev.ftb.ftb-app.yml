@@ -88,7 +88,7 @@ modules:
 
       - type: file
         url: https://raw.githubusercontent.com/FTBTeam/FTB-App/main/flathub/dev.ftb.ftb-app.metainfo.xml?version=b1224ea297634ac3ca782476bbcbcea10635a321
-        sha1: 9a5b37b3bfb34bc563b1d3fa088d78720694d95e
+        sha512: 4d609883c7b9b67230267fe5ad3981faa6f02e56bf9a3007f73e231efda3b46fc0dcb3277f289909bf09d2dcdb76c47600a61c61029ddc1b61eb43b7e5692d47
         x-checker-data:
           type: json
           url: https://api.github.com/repos/FTBTeam/FTB-App/contents/flathub/dev.ftb.ftb-app.metainfo.xml

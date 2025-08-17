@@ -60,8 +60,8 @@ modules:
     sources:
       - type: file
         dest-filename: FTB-App-linux-setup.AppImage
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.1-x86_64.AppImage
-        sha512: 6a2da43b7cb6c279616c3a79cf5c2c1d11f199dfc59df9b5f5807c0112faafc49308e684578c4a453dfaa304c16be867fd48886414b39a9f91192f18e657c9fc
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.2-x86_64.AppImage
+        sha512: 25fcb130535fc58e264498f5f89092e20af2d601026cbf4811d36fd0d6776438c47cdc328882e76e5adf60e712fc46dd12ac7ad72ee9db640be15bf2e976560b
         only-arches:
           - x86_64
         x-checker-data:
@@ -70,8 +70,8 @@ modules:
 
       - type: file
         dest-filename: FTB-App-linux-setup.AppImage
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.1-arm64.AppImage
-        sha512: 1ce161711e42f755e97604d7e2273e4a4eb6df8cb066425c0af3a4ded0496188077c0baded989194a3f1fe22ecbad90edf02e760cec9b7d5bcbe8c22bf6d54b4
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.28.2-arm64.AppImage
+        sha512: 1b2d6c157c732fe13a96c7be01b9bb210f066bd9b0aa8fcf73cfc72c2c2fafe9b0c3030e5fcdb0ac1a39eddfad8f118da24400dbc5c7b6a3751b70deb99c0e16
         only-arches:
           - aarch64
         x-checker-data:
@@ -87,7 +87,7 @@ modules:
         sha256: fbdd6af27ba157d308884d2f3831c12c3d1d1464b60d8b08ef76cae8ff30cc4f
 
       - type: file
-        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/main/flathub/dev.ftb.ftb-app.metainfo.xml?version=b1224ea297634ac3ca782476bbcbcea10635a321
+        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/main/flathub/dev.ftb.ftb-app.metainfo.xml?version=40b386946057b84e5e32edce121bbb170c3354a5
         sha512: 4d609883c7b9b67230267fe5ad3981faa6f02e56bf9a3007f73e231efda3b46fc0dcb3277f289909bf09d2dcdb76c47600a61c61029ddc1b61eb43b7e5692d47
         x-checker-data:
           type: json

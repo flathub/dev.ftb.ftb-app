@@ -60,8 +60,8 @@ modules:
     sources:
       - type: file
         dest-filename: FTB-App-linux-setup.AppImage
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.29.0-beta.252-x86_64.AppImage
-        sha512: b54c19c296b8817559d261a310eb6e61ed62eb4d9e306b7fe75ca31f51ca44e760dec70c7ba79833cbd501bcea28c0552c08ccbfc0cc647b7241b97d8ef400f8
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.29.0-beta.254-x86_64.AppImage
+        sha512: 6144981c7c940c0d2e4ba626927e91ce846f22a90b42f46bdb0a6540a26e1f20d45b52fd4215e28d161539ca9f03e3ec1aa3b2bca14c3bea666297b4b33c2710
         only-arches:
           - x86_64
         x-checker-data:
@@ -70,8 +70,8 @@ modules:
 
       - type: file
         dest-filename: FTB-App-linux-setup.AppImage
-        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.29.0-beta.252-arm64.AppImage
-        sha512: b299e1f4db6e40b9acd8dd87952ab23fb3a4d17523a3f60f249ec8211d3e91d7b1f0b7ce48d4adf6c63696a747c33f99bee1970d1e79ddedf3d238ccf3a16cbe
+        url: https://piston.feed-the-beast.com/app/ftb-app-linux-1.29.0-beta.254-arm64.AppImage
+        sha512: ba79cafb9f89ef23a6c84cfad2dcd23b73f562c6004edf708cc95904f6898e24b07d288ec21ec61fc2c61743d33aa846a15d38755de335ac236f71bc62a5218d
         only-arches:
           - aarch64
         x-checker-data:
@@ -87,8 +87,8 @@ modules:
         sha256: fbdd6af27ba157d308884d2f3831c12c3d1d1464b60d8b08ef76cae8ff30cc4f
 
       - type: file
-        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/main/flathub/dev.ftb.ftb-app.metainfo.xml?version=ac54402c9c943bea95e68a2d76a95171e8807a90
-        sha512: 71659e2b45e065e2e5ec628f0eea114dc98911444ec9b8faafbab5ee4bfd9b7acf0a8f7c19b461429b57b553191d1074db0473af778291a5e8a1877cdf1a97e2
+        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/main/flathub/dev.ftb.ftb-app.metainfo.xml?version=6b6f5212b337bf00681570cd1492f3cf2a5a777b
+        sha512: a25b484f76b0f2bb769ff5660714f18152c023fbc231d9f4615ff4964262a324cfc4e64c81340cce6b99763b38b4ad7b6994992371676b9c507d8769834576f1
         x-checker-data:
           type: json
           url: https://api.github.com/repos/FTBTeam/FTB-App/contents/flathub/dev.ftb.ftb-app.metainfo.xml

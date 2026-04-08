@@ -89,8 +89,8 @@ modules:
         sha256: fbdd6af27ba157d308884d2f3831c12c3d1d1464b60d8b08ef76cae8ff30cc4f
 
       - type: file
-        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/refs/tags/v1.29.5/flathub/dev.ftb.ftb-app.metainfo.xml
-        sha256: a2efe0364057fbb151662199fadb02fca940f310011f8e3d6546d83b8b4ad45a
+        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/refs/tags/v1.29.6/flathub/dev.ftb.ftb-app.metainfo.xml
+        sha256: 9a31a4eabc05439ec9f76299a1072a415f4e08ac315173d063c75ba08691b4eb
         x-checker-data:
           type: json
           url: https://api.github.com/repos/FTBTeam/FTB-App/tags

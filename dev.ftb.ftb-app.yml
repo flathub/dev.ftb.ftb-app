@@ -7,9 +7,8 @@ sdk: org.freedesktop.Sdk
 command: ftb.sh
 
 finish-args:
-  # - --socket=wayland
-  # - --socket=fallback-x11
-  - --socket=x11
+  - --socket=wayland
+  - --socket=fallback-x11
   - --socket=pulseaudio
   - --device=all
   - --share=ipc
@@ -20,7 +19,6 @@ finish-args:
   - --filesystem=xdg-run/app/com.discordapp.Discord:create # Needed for mods that integrate with Discord RPC
 
   - --env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons
-  # - --env=ELECTRON_OZONE_PLATFORM_HINT=auto # Use wayland if available
 
 modules:
   # Credit to the prism flatpak manifest for the gamemode module
@@ -102,33 +100,15 @@ modules:
       - type: script
         commands:
           - |
-            export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
+            # Discord IPC support
             for i in {0..9}; do
               test -S $XDG_RUNTIME_DIR/discord-ipc-$i || ln -sf {app/com.discordapp.Discord,$XDG_RUNTIME_DIR}/discord-ipc-$i;
             done
-            # WAYLAND_SOCKET=${WAYLAND_DISPLAY:-"wayland-0"}
-            # declare -a FLAGS=()
-            # if [[ $XDG_SESSION_TYPE == "wayland" && -z "$DISPLAY" ]]; then
-              # if [[ -c /dev/nvidia0 ]]; then
-                # echo "Using NVIDIA on wayland, disabling gpu sandbox"
-                # FLAGS+=(--disable-gpu-sandbox)
-              # fi
+            export TMPDIR="$XDG_RUNTIME_DIR/app/$FLATPAK_ID"
 
-              # WAYLAND_SOCKET=${WAYLAND_DISPLAY:-"wayland-0"}
-              # if [[ "${WAYLAND_SOCKET:0:1}" != "/" ]]; then
-                # WAYLAND_SOCKET="$XDG_RUNTIME_DIR/$WAYLAND_SOCKET"
-              # fi
-
-              # echo "Running on native Wayland"
-              # FLAGS+=(--ozone-platform-hint=auto)
-              # FLAGS+=(--enable-wayland-ime)
-              # FLAGS+=(--enable-features=WaylandWindowDecorations)
-            # else
-              # echo "Running on x11"
-            # fi
-
-            # echo "Passing the following flags to electron:" "${FLAGS[@]}" "$@"
-            # exec zypak-wrapper /app/bin/ftb-app/ftb-app "${FLAGS[@]}" "$@" --ignore-pid-checks
             rm -f ~/.ftba/app.pid # Temp fix for --ignore-pid-checks not working
+            echo "Passing the following flags to electron:" "$@"
             exec zypak-wrapper /app/bin/ftb-app/ftb-app "$@" --ignore-pid-checks
+
+            # exec zypak-wrapper /app/bin/ftb-app/ftb-app "$@" --ignore-pid-checks
         dest-filename: ftb.sh

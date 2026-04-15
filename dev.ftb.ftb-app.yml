@@ -7,8 +7,10 @@ sdk: org.freedesktop.Sdk
 command: ftb.sh
 
 finish-args:
-  - --socket=wayland
-  - --socket=fallback-x11
+  - --socket=x11
+  # Disable wayland for now, were running into too many issues with minecraft/mods not behaving properly
+  # - --socket=wayland
+  # - --socket=fallback-x11
   - --socket=pulseaudio
   - --device=all
   - --share=ipc
@@ -103,7 +105,5 @@ modules:
 
             rm -f ~/.ftba/app.pid # Temp fix for --ignore-pid-checks not working
             echo "Passing the following flags to electron:" "$@"
-            exec zypak-wrapper /app/bin/ftb-app/ftb-app "$@" --ignore-pid-checks
-
-            # exec zypak-wrapper /app/bin/ftb-app/ftb-app "$@" --ignore-pid-checks
+            exec zypak-wrapper /app/bin/ftb-app/ftb-app "$@" --ignore-pid-checks --ozone-platform=x11
         dest-filename: ftb.sh

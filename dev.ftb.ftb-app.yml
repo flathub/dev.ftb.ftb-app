@@ -90,7 +90,7 @@ modules:
 
       - type: file
         url: https://raw.githubusercontent.com/FTBTeam/FTB-App/refs/heads/main/flathub/dev.ftb.ftb-app.metainfo.xml
-        sha256: 2a6f5695449d49a2a617726eda93a93f01e03e8b951401ca745f396a288ad6ab
+        sha256: aef5c582ce822a275685fd89b1c1fd1f166b78cdf3081240fccc39d1d4feaf68
         # x-checker-data:
         #   type: json
         #   url: https://api.github.com/repos/FTBTeam/FTB-App/tags

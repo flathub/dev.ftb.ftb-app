@@ -79,21 +79,21 @@ modules:
           url: https://piston.feed-the-beast.com/app/beta-linux-arm64.yml
 
       - type: file
-        url: https://github.com/FTBTeam/FTB-App/raw/main/flathub/dev.ftb.ftb-app.desktop
-        sha256: da102a024457d0cf9986f032b3102dbc3f286612fed5dece4bbe83d02af76ef8
+        url: https://github.com/FTBTeam/FTB-App/raw/dev/flathub/dev.ftb.ftb-app.desktop
+        sha256: ba55b59a5bd69b8683e7b9a81834d79110860dca8d950eb194941a74aa64c7cc
 
       - type: file
-        url: https://github.com/FTBTeam/FTB-App/raw/main/resources/icon.png
+        url: https://github.com/FTBTeam/FTB-App/raw/dev/resources/icon.png
         sha256: fbdd6af27ba157d308884d2f3831c12c3d1d1464b60d8b08ef76cae8ff30cc4f
 
       - type: file
-        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/main/flathub/dev.ftb.ftb-app.metainfo.xml?version=caa8b48ad75352ad9951065eb1fa0859eac0f957
+        url: https://raw.githubusercontent.com/FTBTeam/FTB-App/dev/flathub/dev.ftb.ftb-app.metainfo.xml?version=caa8b48ad75352ad9951065eb1fa0859eac0f957
         sha512: a33540970d685af9c16c5e87811be8b9fd9e7c16b8c690aeff6061ec837b9f5a560535237034bc23bcc7707bfa119fde41a1494bf4f8293453a0c8ac8926e58c
         x-checker-data:
           type: json
           url: https://api.github.com/repos/FTBTeam/FTB-App/contents/flathub/dev.ftb.ftb-app.metainfo.xml
           version-query: .sha
-          url-query: '"https://raw.githubusercontent.com/FTBTeam/FTB-App/main/flathub/dev.ftb.ftb-app.metainfo.xml?version=\($version)"'
+          url-query: '"https://raw.githubusercontent.com/FTBTeam/FTB-App/dev/flathub/dev.ftb.ftb-app.metainfo.xml?version=\($version)"'
       - type: script
         commands:
           - |
